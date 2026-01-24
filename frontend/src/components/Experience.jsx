@@ -19,16 +19,16 @@ const Experience = () => {
           
           <div className="relative bg-neutral-800/80 dark:bg-white/80 backdrop-blur-md p-6 md:p-8 rounded-3xl border border-neutral-700 dark:border-gray-200 shadow-2xl">
             
-            {/* Title and Date Row - FIXED FOR MOBILE RESPONSIVENESS */}
-            <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4 mb-4">
-              <div className="flex-1">
-                <h3 className="text-xl md:text-2xl font-bold text-blue-400 dark:text-blue-600">
+            {/* Title and Date Row - FULLY RESPONSIVE VERSION */}
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-3 mb-4">
+              <div className="flex-1 min-w-0">
+                <h3 className="text-xl md:text-2xl font-bold text-blue-400 dark:text-blue-600 break-words">
                   Android Developer Intern
                 </h3>
                 <p className="text-base md:text-xl font-semibold opacity-90">Compozent</p>
               </div>
               
-              <div className="self-start md:self-auto shrink-0 flex items-center gap-1.5 bg-neutral-700/50 dark:bg-gray-200/50 px-3 py-1.5 md:px-4 md:py-2 rounded-full text-xs md:text-sm font-medium border border-neutral-600 dark:border-gray-300">
+              <div className="inline-flex shrink-0 items-center gap-1.5 bg-neutral-700/50 dark:bg-gray-200/50 px-3 py-1.5 rounded-full text-xs font-medium border border-neutral-600 dark:border-gray-300 w-fit">
                 <FaCalendarAlt className="text-blue-400" />
                 <span className="whitespace-nowrap">Dec '24 — Jan '25</span>
               </div>

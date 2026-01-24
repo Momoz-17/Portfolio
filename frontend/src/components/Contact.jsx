@@ -11,7 +11,7 @@ export default function Contact() {
     e.preventDefault();
     // For production, replace localhost with your actual backend URL
     try {
-      await fetch("https://mohit-portfolio-l239.onrender.com", {
+      await fetch("https://mohit-portfolio-l239.onrender.com/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
