@@ -11,9 +11,29 @@ connectDB();
 
 const app = express();
 
-// Middleware
-app.use(cors());
-app.use(express.json()); // Built-in alternative to body-parser
+// --- UPDATE STARTS HERE ---
+// 1. Define which websites are allowed to talk to your backend
+const allowedOrigins = [
+  'http://localhost:5173',                   // Local development
+  'https://mohit-portfolio-1.onrender.com',  // Your future Vercel URL
+  'https://mohit-portfolio-l239.onrender.com' // Your future Render URL
+];
+
+// 2. Replace app.use(cors()) with this detailed version
+app.use(cors({
+  origin: function (origin, callback) {
+    // allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) === -1) {
+      const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  }
+}));
+// --- UPDATE ENDS HERE ---
+
+app.use(express.json()); 
 
 // Define Routes
 app.use('/api/contact', require('./routes/contact.js'));
