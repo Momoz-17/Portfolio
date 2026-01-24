@@ -3,22 +3,37 @@ import { FaPaperPlane, FaEnvelope, FaMapMarkerAlt, FaLinkedin, FaGithub } from "
 
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", msg: "" });
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // For production, replace localhost with your actual backend URL
+    setLoading(true);
+
     try {
-      await fetch("https://mohit-portfolio-l239.onrender.com/api/contact", {
+      // 1. Fixed URL with /api/contact path
+      const response = await fetch("https://mohit-portfolio-l239.onrender.com/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
       });
-      alert("Message sent! I'll get back to you soon.");
+
+      // 2. Check for successful response status
+      if (response.ok) {
+        alert("Message sent! I'll get back to you soon.");
+        setForm({ name: "", email: "", msg: "" }); // Reset form
+      } else {
+        const errorData = await response.json();
+        alert(`Error: ${errorData.message || "Failed to send"}`);
+      }
     } catch (err) {
-      alert("Failed to send message. Please try again later.");
+      // 3. Handle network crashes or incorrect URLs
+      console.error("Fetch error:", err);
+      alert("Failed to send message. Please check your internet or backend status.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -28,7 +43,6 @@ export default function Contact() {
       className="py-20 px-6 bg-gradient-to-b from-neutral-900 to-neutral-800 dark:from-white dark:to-gray-100 text-white dark:text-neutral-900 transition-colors duration-500"
     >
       <div className="max-w-6xl mx-auto">
-        {/* Heading */}
         <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 tracking-tight">
           <span className="bg-gradient-to-r from-blue-700 via-blue-500 to-blue-300 bg-clip-text text-transparent">
             Get In Touch
@@ -44,7 +58,6 @@ export default function Contact() {
             </p>
             
             <div className="space-y-4">
-              {/* DIRECT GMAIL COMPOSE LINK */}
               <a 
                 href="https://mail.google.com/mail/?view=cm&fs=1&to=mohitvijaygupta17@gmail.com" 
                 target="_blank"
@@ -73,14 +86,12 @@ export default function Contact() {
               </div>
             </div>
 
-            {/* Social Links */}
             <div className="flex gap-4 pt-4">
               <a 
                 href="https://www.linkedin.com/in/mohit-gupta-9237b9263" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="p-3 bg-neutral-800 dark:bg-gray-200 rounded-xl hover:text-blue-500 transition-all shadow-md"
-                aria-label="LinkedIn"
               >
                 <FaLinkedin size={24}/>
               </a>
@@ -89,7 +100,6 @@ export default function Contact() {
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="p-3 bg-neutral-800 dark:bg-gray-200 rounded-xl hover:text-blue-500 transition-all shadow-md"
-                aria-label="GitHub"
               >
                 <FaGithub size={24}/>
               </a>
@@ -110,6 +120,7 @@ export default function Contact() {
                   <input
                     type="text"
                     name="name"
+                    value={form.name}
                     required
                     placeholder="John Doe"
                     className="p-4 rounded-2xl bg-neutral-900/50 dark:bg-gray-100 border border-neutral-700 dark:border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-all text-white dark:text-neutral-900"
@@ -121,6 +132,7 @@ export default function Contact() {
                   <input
                     type="email"
                     name="email"
+                    value={form.email}
                     required
                     placeholder="john@example.com"
                     className="p-4 rounded-2xl bg-neutral-900/50 dark:bg-gray-100 border border-neutral-700 dark:border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 outline-none transition-all text-white dark:text-neutral-900"
@@ -133,6 +145,7 @@ export default function Contact() {
                 <label className="text-sm font-semibold opacity-70 ml-1">Message</label>
                 <textarea
                   name="msg"
+                  value={form.msg}
                   required
                   rows="4"
                   placeholder="Tell me about your project..."
@@ -141,9 +154,12 @@ export default function Contact() {
                 />
               </div>
 
-              <button className="bg-gradient-to-r from-blue-700 to-blue-500 py-4 rounded-2xl font-bold text-lg flex items-center justify-center gap-3 hover:scale-[1.02] active:scale-95 transition-all shadow-lg shadow-blue-500/20 text-white">
-                Send Message
-                <FaPaperPlane className="text-sm" />
+              <button 
+                disabled={loading}
+                className={`bg-gradient-to-r from-blue-700 to-blue-500 py-4 rounded-2xl font-bold text-lg flex items-center justify-center gap-3 hover:scale-[1.02] active:scale-95 transition-all shadow-lg shadow-blue-500/20 text-white ${loading ? 'opacity-70 cursor-not-allowed' : ''}`}
+              >
+                {loading ? "Sending..." : "Send Message"}
+                {!loading && <FaPaperPlane className="text-sm" />}
               </button>
             </form>
           </div>
