@@ -25,13 +25,15 @@ const Experience = () => {
                 <h3 className="text-xl md:text-2xl font-bold text-blue-400 dark:text-blue-600 break-words">
                   Android Developer Intern
                 </h3>
-                <p className="text-base md:text-xl font-semibold opacity-90">Compozent</p>
+                <div className="flex items-center flex-wrap gap-3 pt-3">
+                  <p className="text-base md:text-xl font-semibold opacity-90">Compozent</p>        
+                  <div className="inline-flex shrink-0 items-center gap-1.5 bg-neutral-700/50 dark:bg-gray-200/50 px-3 py-1.5 rounded-full text-xs font-medium border border-neutral-600 dark:border-gray-300 w-fit">
+                    <FaCalendarAlt className="text-blue-400" />
+                    <span className="whitespace-nowrap">Dec '24 — Jan '25</span>
+                  </div>
+                </div>
               </div>
               
-              <div className="inline-flex shrink-0 items-center gap-1.5 bg-neutral-700/50 dark:bg-gray-200/50 px-3 py-1.5 rounded-full text-xs font-medium border border-neutral-600 dark:border-gray-300 w-fit">
-                <FaCalendarAlt className="text-blue-400" />
-                <span className="whitespace-nowrap">Dec '24 — Jan '25</span>
-              </div>
             </div>
 
             {/* Description */}
