@@ -7,7 +7,6 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import Experience from "./components/Experience";
 import Certificates from "./components/Certificates";
-import Demo from "./components/demo";
 
 export default function App() {
   return (
@@ -21,7 +20,6 @@ export default function App() {
       <Certificates />
       <Contact />
       <Footer />
-      <Demo />
     </>
   );
 }
