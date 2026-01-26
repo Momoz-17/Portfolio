@@ -14,7 +14,7 @@ export default function Contact() {
 
     try {
       // 1. Fixed URL with /api/contact path
-      const response = await fetch("https://mohit-portfolio-l239.onrender.com/api/contact", {
+      const response = await fetch("https://mohit-portfolio-backend.onrender.com/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
