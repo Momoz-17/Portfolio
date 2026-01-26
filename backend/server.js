@@ -15,8 +15,8 @@ const app = express();
 // 1. Define which websites are allowed to talk to your backend
 const allowedOrigins = [
   'http://localhost:5173',                   // Local development
-  'https://mohit-portfolio-1.onrender.com',  // Your future Render URL
-  'https://mohit-portfolio-l239.onrender.com' // Your future Render URL
+  'https://mohit-portfolio-backend.onrender.com',  // Your future Render URL
+  'https://mohit-portfolio-frontend.onrender.com' // Your future Render URL
 ];
 
 // 2. Replace app.use(cors()) with this detailed version
