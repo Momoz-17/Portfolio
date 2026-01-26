@@ -16,7 +16,7 @@ const app = express();
 const allowedOrigins = [
   'http://localhost:5173',                   // Local development
   'https://mohit-portfolio-backend.onrender.com',  // Your future Render URL
-  'https://mohit-portfolio-frontend.onrender.com' // Your future Render URL
+  'https://mohit-portfolio-kjv0.onrender.com' // Your future Render URL
 ];
 
 // 2. Replace app.use(cors()) with this detailed version
