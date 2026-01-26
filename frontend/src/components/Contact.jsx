@@ -14,7 +14,7 @@ export default function Contact() {
 
     try {
       // Ensure this URL is exactly your current Backend Render URL
-      const response = await fetch("https://mohit-portfolio-backend.onrender.com", {
+      const response = await fetch("https://mohit-portfolio-backend.onrender.com/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
@@ -33,7 +33,7 @@ export default function Contact() {
       setLoading(false); // Resets button from "Sending..."
     }
   };
-
+  
   return (
     <section 
       id="contact" 
