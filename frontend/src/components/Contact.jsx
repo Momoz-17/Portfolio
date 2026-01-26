@@ -19,21 +19,22 @@ export default function Contact() {
         body: JSON.stringify(form),
       });
 
+      const data = await response.json();
+
       if (response.ok) {
         alert("Message sent! I'll get back to you soon.");
-        setForm({ name: "", email: "", msg: "" });
+        setForm({ name: "", email: "", msg: "" }); // Clears form
       } else {
-        const errorData = await response.json();
-        alert(`Error: ${errorData.message || "Failed to send"}`);
+        alert(`Error: ${data.error || "Failed to send"}`);
       }
     } catch (err) {
       console.error("Fetch error:", err);
-      alert("Failed to send message. Please check your internet or backend status.");
+      alert("Failed to send message. Please check your connection.");
     } finally {
+      // This resets the button from "Sending..." back to "Send Message"
       setLoading(false);
     }
   };
-
   return (
     <section 
       id="contact" 

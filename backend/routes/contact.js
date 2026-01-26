@@ -37,10 +37,13 @@ router.post('/', async (req, res) => {
 
     await transporter.sendMail(mailOptions);
 
-    return res.status(200).json({ message: "Message saved and Email sent!" });
+    // This line tells the frontend to stop "Sending..."
+    return res.status(200).json({ success: true, message: "Message sent!" });
+
   } catch (err) {
     console.error(err);
-    return res.status(500).json({ error: "Server error" });
+    // If this fails, the frontend shows an error alert
+    return res.status(500).json({ success: false, error: "Server error" });
   }
 });
 
