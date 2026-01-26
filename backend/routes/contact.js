@@ -7,9 +7,11 @@ router.post('/', async (req, res) => {
   try {
     const { name, email, msg } = req.body;
 
+    // 1. Save to MongoDB
     const newMessage = new Message({ name, email, msg });
     await newMessage.save();
 
+    // 2. Setup Nodemailer
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
@@ -35,15 +37,18 @@ router.post('/', async (req, res) => {
       `,
     };
 
+    // 3. Send Email
     await transporter.sendMail(mailOptions);
 
-    // This line tells the frontend to stop "Sending..."
-    return res.status(200).json({ success: true, message: "Message sent!" });
+    // 4. THE FIX: Using 'return' ensures the function ends here successfully
+    return res.status(200).json({ success: true, message: "Message sent successfully!" });
 
   } catch (err) {
-    console.error(err);
-    // If this fails, the frontend shows an error alert
-    return res.status(500).json({ success: false, error: "Server error" });
+    console.error("Backend Error:", err);
+    // Ensure we only send ONE error response
+    if (!res.headersSent) {
+      return res.status(500).json({ success: false, error: "Server error" });
+    }
   }
 });
 

@@ -13,7 +13,8 @@ export default function Contact() {
     setLoading(true);
 
     try {
-      const response = await fetch("https://mohit-portfolio-backend.onrender.com/api/contact", {
+      // Ensure this URL is your ACTUAL backend URL on Render
+      const response = await fetch("https://portfolio-kjv0.onrender.com/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
@@ -22,19 +23,22 @@ export default function Contact() {
       const data = await response.json();
 
       if (response.ok) {
+        // This triggers the alert and clears the form
         alert("Message sent! I'll get back to you soon.");
-        setForm({ name: "", email: "", msg: "" }); // Clears form
+        setForm({ name: "", email: "", msg: "" });
       } else {
-        alert(`Error: ${data.error || "Failed to send"}`);
+        // This handles the "Server error" message from the backend
+        alert(`Error: ${data.error || "Something went wrong"}`);
       }
     } catch (err) {
       console.error("Fetch error:", err);
-      alert("Failed to send message. Please check your connection.");
+      alert("Failed to connect to the server.");
     } finally {
-      // This resets the button from "Sending..." back to "Send Message"
+      // THIS IS CRITICAL: It turns off the "Sending..." state no matter what
       setLoading(false);
     }
   };
+  
   return (
     <section 
       id="contact" 
