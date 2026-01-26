@@ -13,23 +13,20 @@ export default function Contact() {
     setLoading(true);
 
     try {
-      // 1. Fixed URL with /api/contact path
       const response = await fetch("https://mohit-portfolio-backend.onrender.com/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
       });
 
-      // 2. Check for successful response status
       if (response.ok) {
         alert("Message sent! I'll get back to you soon.");
-        setForm({ name: "", email: "", msg: "" }); // Reset form
+        setForm({ name: "", email: "", msg: "" });
       } else {
         const errorData = await response.json();
         alert(`Error: ${errorData.message || "Failed to send"}`);
       }
     } catch (err) {
-      // 3. Handle network crashes or incorrect URLs
       console.error("Fetch error:", err);
       alert("Failed to send message. Please check your internet or backend status.");
     } finally {
@@ -50,7 +47,6 @@ export default function Contact() {
         </h2>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Left Side: Contact Info */}
           <div className="space-y-8">
             <h3 className="text-2xl font-bold">Let's collaborate!</h3>
             <p className="text-neutral-400 dark:text-neutral-600 max-w-md text-lg">
@@ -106,7 +102,6 @@ export default function Contact() {
             </div>
           </div>
 
-          {/* Right Side: Contact Form */}
           <div className="relative group">
             <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-cyan-500 rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
             

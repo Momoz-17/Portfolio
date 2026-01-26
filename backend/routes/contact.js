@@ -7,11 +7,9 @@ router.post('/', async (req, res) => {
   try {
     const { name, email, msg } = req.body;
 
-    // 1. Save to MongoDB (Existing logic)
     const newMessage = new Message({ name, email, msg });
     await newMessage.save();
 
-    // 2. Setup Nodemailer Transporter
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
@@ -20,10 +18,9 @@ router.post('/', async (req, res) => {
       },
     });
 
-    // 3. Define the Email Content
     const mailOptions = {
       from: process.env.EMAIL_USER,
-      to: 'mohitvijaygupta17@gmail.com', // Where you want to receive the alert
+      to: 'mohitvijaygupta17@gmail.com',
       subject: `New Portfolio Message from ${name}`,
       html: `
         <div style="font-family: Arial, sans-serif; padding: 20px; border: 1px solid #eee;">
@@ -38,13 +35,12 @@ router.post('/', async (req, res) => {
       `,
     };
 
-    // 4. Send the Email
     await transporter.sendMail(mailOptions);
 
-    res.status(201).json({ message: "Message saved and Email sent!" });
+    return res.status(200).json({ message: "Message saved and Email sent!" });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: "Server error" });
+    return res.status(500).json({ error: "Server error" });
   }
 });
 
