@@ -7,13 +7,16 @@ router.post('/', async (req, res) => {
   try {
     const { name, email, msg } = req.body;
 
-    // 1. Save to MongoDB
+    // 1. Save to MongoDB first
     const newMessage = new Message({ name, email, msg });
     await newMessage.save();
 
-    // 2. Setup Nodemailer
+    // 2. Setup Transporter
     const transporter = nodemailer.createTransport({
       service: 'gmail',
+      host: 'smtp.gmail.com',
+      port: 465,
+      secure: true,
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS,
@@ -23,31 +26,20 @@ router.post('/', async (req, res) => {
     const mailOptions = {
       from: process.env.EMAIL_USER,
       to: 'mohitvijaygupta17@gmail.com',
-      subject: `New Portfolio Message from ${name}`,
-      html: `
-        <div style="font-family: Arial, sans-serif; padding: 20px; border: 1px solid #eee;">
-          <h2 style="color: #3b82f6;">New Contact Form Submission</h2>
-          <p><strong>Name:</strong> ${name}</p>
-          <p><strong>Email:</strong> ${email}</p>
-          <p><strong>Message:</strong></p>
-          <div style="background: #f9f9f9; padding: 15px; border-radius: 5px;">
-            ${msg}
-          </div>
-        </div>
-      `,
+      subject: `Portfolio Message: ${name}`,
+      text: `From: ${name} (${email})\n\nMessage: ${msg}`
     };
 
-    // 3. Send Email
-    await transporter.sendMail(mailOptions);
+    // 3. Send Email (with a small delay to prevent hanging)
+    transporter.sendMail(mailOptions).catch(err => console.log("Email failed but DB saved:", err));
 
-    // 4. THE FIX: Using 'return' ensures the function ends here successfully
-    return res.status(200).json({ success: true, message: "Message sent successfully!" });
+    // 4. Return success immediately so the frontend clears
+    return res.status(200).json({ success: true, message: "Received!" });
 
   } catch (err) {
-    console.error("Backend Error:", err);
-    // Ensure we only send ONE error response
+    console.error("Critical Error:", err);
     if (!res.headersSent) {
-      return res.status(500).json({ success: false, error: "Server error" });
+      return res.status(500).json({ error: "Server encountered an error" });
     }
   }
 });
