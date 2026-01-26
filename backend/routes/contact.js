@@ -7,16 +7,13 @@ router.post('/', async (req, res) => {
   try {
     const { name, email, msg } = req.body;
 
-    // 1. Save to MongoDB first
+    // 1. SAVE TO DATABASE (Always do this first)
     const newMessage = new Message({ name, email, msg });
     await newMessage.save();
 
-    // 2. Setup Transporter
+    // 2. SETUP EMAIL TRANSPORTER
     const transporter = nodemailer.createTransport({
       service: 'gmail',
-      host: 'smtp.gmail.com',
-      port: 465,
-      secure: true,
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS,
@@ -26,20 +23,27 @@ router.post('/', async (req, res) => {
     const mailOptions = {
       from: process.env.EMAIL_USER,
       to: 'mohitvijaygupta17@gmail.com',
-      subject: `Portfolio Message: ${name}`,
-      text: `From: ${name} (${email})\n\nMessage: ${msg}`
+      subject: `New Portfolio Message from ${name}`,
+      text: `Name: ${name}\nEmail: ${email}\nMessage: ${msg}`
     };
 
-    // 3. Send Email (with a small delay to prevent hanging)
-    transporter.sendMail(mailOptions).catch(err => console.log("Email failed but DB saved:", err));
+    // 3. SEND EMAIL ASYNCHRONOUSLY
+    // We don't use 'await' here so the response to the browser isn't delayed
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.log("Email Error but DB saved:", error);
+      } else {
+        console.log("Email sent successfully");
+      }
+    });
 
-    // 4. Return success immediately so the frontend clears
-    return res.status(200).json({ success: true, message: "Received!" });
+    // 4. SEND SUCCESS TO BROWSER IMMEDIATELY
+    return res.status(200).json({ success: true, message: "Success" });
 
   } catch (err) {
-    console.error("Critical Error:", err);
+    console.error("Database Error:", err);
     if (!res.headersSent) {
-      return res.status(500).json({ error: "Server encountered an error" });
+      return res.status(500).json({ error: "Server error" });
     }
   }
 });

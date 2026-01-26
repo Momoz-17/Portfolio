@@ -13,6 +13,7 @@ export default function Contact() {
     setLoading(true);
 
     try {
+      // Ensure this URL is exactly your current Backend Render URL
       const response = await fetch("https://portfolio-kjv0.onrender.com/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -20,16 +21,16 @@ export default function Contact() {
       });
 
       if (response.ok) {
-        alert("Success! Message sent.");
-        setForm({ name: "", email: "", msg: "" });
+        alert("Message sent successfully!");
+        setForm({ name: "", email: "", msg: "" }); // Clears form
       } else {
-        alert("Server error. Please try again later.");
+        alert("Server returned an error. Check backend logs.");
       }
     } catch (err) {
-      alert("Could not connect to server. Is your internet okay?");
+      console.error("Connection Error:", err);
+      alert("Could not connect to server. Is the backend awake?");
     } finally {
-      // This MUST be here to stop the "Sending..." text
-      setLoading(false);
+      setLoading(false); // Resets button from "Sending..."
     }
   };
   
