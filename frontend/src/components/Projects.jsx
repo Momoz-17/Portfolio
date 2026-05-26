@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaGithub, FaExternalLinkAlt, FaLock, FaAndroid, FaRobot } from 'react-icons/fa';
+import { FaGithub, FaExternalLinkAlt, FaLock, FaAndroid, FaRobot, FaWallet, FaShieldAlt, FaUsers, FaHandHoldingHeart } from 'react-icons/fa';
 
 const projects = [
   {
@@ -22,6 +22,34 @@ const projects = [
     tech: ["Python", "Machine Learning", "NLP"],
     link: "https://github.com/Momoz-17/Machine-Learning-mini-project",
     icon: <FaRobot className="text-purple-500" />
+  },
+  {
+    title: "Finance Tracker",
+    desc: "A personal finance management tool designed to track income, expenses, and budgets with intuitive data visualizations.",
+    tech: ["JavaScript", "React", "Node.js", "Express", "MongoDB"],
+    link: "https://github.com/Momoz-17/Finance-Tracker",
+    icon: <FaWallet className="text-amber-500" />
+  },
+  {
+    title: "Silent Complain System",
+    desc: "A secure and anonymous platform for submitting complaints and feedback safely without revealing user identity.",
+    tech: ["JavaScript", "React", "Node.js", "Express", "MongoDB"],
+    link: "https://github.com/Momoz-17/Silent-Complain-System",
+    icon: <FaShieldAlt className="text-red-500" />
+  },
+  {
+    title: "Connection Building",
+    desc: "A professional networking platform focused on linking individuals, sharing ideas, and creating meaningful career relationships.",
+    tech: ["JavaScript", "React", "Node.js", "Express", "MongoDB"],
+    link: "https://github.com/Momoz-17/Connection-Building",
+    icon: <FaUsers className="text-cyan-500" />
+  },
+  {
+    title: "Local Helper",
+    desc: "A community-focused application designed to bridge the gap between local service providers and residents in need of assistance.",
+    tech: ["JavaScript", "React", "Node.js", "Express", "MongoDB"],
+    link: "https://github.com/Momoz-17/Local-Helper",
+    icon: <FaHandHoldingHeart className="text-rose-500" />
   }
 ];
 

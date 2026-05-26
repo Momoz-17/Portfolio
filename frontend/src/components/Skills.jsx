@@ -5,7 +5,7 @@ const skillCategories = [
   {
     title: "Languages",
     icon: <FaCode className="text-blue-500" />,
-    skills: ["Javascript", "PHP", "Python", "Kotlin", "HTML5", "CSS"]
+    skills: ["Javascript", "PHP", "Python", "Kotlin"]
   },
   {
     title: "Frameworks & Libs",
