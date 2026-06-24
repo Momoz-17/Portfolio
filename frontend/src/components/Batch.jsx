@@ -5,7 +5,7 @@ const batchData = [
     id: 1,
     title: "AWS Cloud Academy Graduate",
     issuer: "AWS Academy",
-    badgeFile: "/AWS batch.pdf",
+    badgeFile: "/AWS batch.jpeg", 
     icon: (
       <div className="w-12 h-12 bg-amber-500/10 rounded-xl flex items-center justify-center border border-amber-500/20">
         <span className="text-amber-500 text-xs font-bold font-mono">aws</span>
@@ -16,7 +16,7 @@ const batchData = [
     id: 2,
     title: "Postman API Student Expert",
     issuer: "Postman",
-    badgeFile: "#", 
+    badgeFile: "/Postman API.jpeg", 
     icon: (
       <div className="w-12 h-12 bg-orange-500/10 rounded-xl flex items-center justify-center border border-orange-500/20">
         <span className="text-orange-500 text-xs font-bold font-mono">P</span>
