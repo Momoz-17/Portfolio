@@ -34,8 +34,8 @@ const Batch = () => {
       <div className="max-w-6xl mx-auto">
         
         {/* Component Title matched to Certifications style */}
-        <h2 className="text-4xl font-bold text-center text-blue-500 mb-12 tracking-wide">
-          Academic Batches
+        <h2 className="text-4xl font-bold text-center bg-gradient-to-r from-blue-700 via-blue-500 to-blue-300 bg-clip-text text-transparent mb-12 tracking-wide">
+          Batches
         </h2>
 
         {/* Replicated Grid System */}
