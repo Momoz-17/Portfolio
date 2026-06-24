@@ -31,8 +31,8 @@ const Batch = () => {
       <div className="max-w-6xl mx-auto">
         
         {/* Fixed Title: Matches the left-to-right gradient exactly */}
-        <h2 className="text-4xl font-bold text-center mb-12 tracking-wide">
-          <span className="bg-gradient-to-r from-blue-600 to-sky-400 bg-clip-text text-transparent">
+        <h2 className="text-4xl md:text-5xl font-bold text-center mb-12 tracking-wide">
+          <span className="bg-gradient-to-r from-blue-700 via-blue-500 to-blue-300 bg-clip-text text-transparent">
             Academic Batches
           </span>
         </h2>
