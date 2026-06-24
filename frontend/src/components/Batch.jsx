@@ -27,7 +27,7 @@ const batchData = [
 
 const Batch = () => {
   return (
-    <section id="batches" className="bg-[#111] py-16 px-6 border-t border-zinc-800">
+    <section id="batches" className="py-20 px-6 bg-gradient-to-b from-neutral-800 to-neutral-900 dark:from-gray-100 dark:to-white text-white dark:text-neutral-900 transition-colors duration-500">
       <div className="max-w-6xl mx-auto">
         
         {/* Fixed Title: Matches the left-to-right gradient exactly */}
