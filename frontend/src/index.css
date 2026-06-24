@@ -1,1 +1,6 @@
 @import "tailwindcss";
+
+@theme {
+  --color-brand-primary: #38bdf8; /* Cyber Blue */
+  --color-brand-hover: #0ea5e9;
+}
