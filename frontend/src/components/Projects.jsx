@@ -1,5 +1,17 @@
 import React from 'react';
-import { FaGithub, FaExternalLinkAlt, FaLock, FaAndroid, FaRobot, FaWallet, FaShieldAlt, FaUsers, FaHandHoldingHeart, FaUtensils, FaRss } from 'react-icons/fa';
+import { 
+  FaGithub, 
+  FaExternalLinkAlt, 
+  FaLock, 
+  FaAndroid, 
+  FaRobot, 
+  FaWallet, 
+  FaShieldAlt, 
+  FaUsers, 
+  FaHandHoldingHeart, 
+  FaUtensils, 
+  FaRss 
+} from 'react-icons/fa';
 
 const projects = [
   {
