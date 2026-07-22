@@ -57,7 +57,23 @@ const projects = [
     link: "https://github.com/Momoz-17/Local-Helper",
     liveLink: "https://local-helper-bomy.onrender.com/",
     icon: <FaHandHoldingHeart className="text-rose-500" />
-  }
+  },
+  {
+    title: "Misty Bakers",
+    desc: "A full-stack e-commerce cake platform featuring weight-based pricing tiers, cart management, and a robust admin dashboard for product inventory tracking.",
+    tech: ["React", "Node.js", "Express", "MongoDB", "Tailwind CSS", "TypeScript", "Firebase"],
+    link: "https://github.com/Momoz-17/Misty-Bakers",
+    liveLink: null,
+    icon: <FaUtensils className="text-pink-500" />
+  },
+  {
+    title: "Instant Feed App",
+    desc: "A real-time data delivery application focused on low-latency updates and seamless background synchronization for content streams.",
+    tech: ["ReactNative", "Supabase", "Expo + Expo Router", "PostgreSQL", "TypeScript"],
+    link: "https://github.com/Momoz-17/Instant-Feed-App",
+    liveLink: "https://expo.dev/accounts/mozzy17/projects/MyApp/builds/b80f79f6-3cd3-4766-8654-f1e9305a69a0",
+    icon: <FaRss className="text-orange-500" />
+  },
 ];
 
 export default function Projects() {
