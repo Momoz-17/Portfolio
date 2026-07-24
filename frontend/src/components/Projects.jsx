@@ -73,7 +73,7 @@ const projects = [
   {
     title: "Misty Bakers",
     desc: "A full-stack e-commerce cake platform featuring weight-based pricing tiers, cart management, and a robust admin dashboard for product inventory tracking.",
-    tech: ["React", "Node.js", "Express", "MongoDB", "Tailwind CSS", "TypeScript", "Firebase"],
+    tech: ["React", "Node.js", "Express", "MongoDB", "Tailwind CSS", "TypeScript", "Firebase", "Cloudinary"],
     link: "https://github.com/Momoz-17/Misty-Bakers",
     liveLink: "https://misty-bakers-1.onrender.com/",
     icon: <FaUtensils className="text-pink-500" />
